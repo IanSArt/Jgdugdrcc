@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d12">
+<title>KenzlyStore | Marketplace Akun MLBB</title>
+<style>
+:root {
+  --bg:#080d12;
+  --card:#111a22;
+  --green:#a3ff4f;
+  --muted:#a3b0bb;
+  --border:#263641;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:#f5f7fa;
+  font-family:Arial,Helvetica,sans-serif;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,92%);margin:auto}
+header{
+  position:sticky;top:0;z-index:10;
+  background:#080d12ed;border-bottom:1px solid var(--border);
+  backdrop-filter:blur(14px)
+}
+nav{height:72px;display:flex;align-items:center;
+  justify-content:space-between;gap:15px}
+.logo{font-size:25px;font-weight:900}
+.logo span{color:var(--green)}
+.navlinks{display:flex;gap:24px;color:#c2ccd3;font-size:14px}
+.navlinks a:hover{color:var(--green)}
+.btn{
+  display:inline-block;padding:13px 18px;border-radius:10px;
+  background:var(--green);color:#10160b;font-weight:bold;
+  border:0;cursor:pointer
+}
+.btn:hover{filter:brightness(1.1)}
+.btn-outline{background:transparent;color:white;
+  border:1px solid var(--border)}
+.hero{
+  padding:80px 0 70px;
+  background:radial-gradient(ellipse at 80% 20%,#203a25 0,transparent 45%)
+}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;
+  align-items:center;gap:40px}
+.tag{color:var(--green);font-size:12px;font-weight:bold;
+  letter-spacing:2px}
+h1{font-size:clamp(40px,6vw,68px);line-height:1.05;
+  letter-spacing:-2px;margin:18px 0}
+h1 span{color:var(--green)}
+p{color:var(--muted);line-height:1.8}
+.hero p{max-width:540px;font-size:16px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+.hero-art{
+  min-height:300px;border:1px solid #36503b;border-radius:25px;
+  display:grid;place-items:center;text-align:center;padding:25px;
+  background:linear-gradient(145deg,#172a1d,#101820);
+  box-shadow:0 20px 70px #0005
+}
+.hero-icon{font-size:90px}
+.hero-art h2{margin:8px 0}
+.hero-art .green{color:var(--green);font-weight:bold}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;margin-top:20px}
+.stat{background:#ffffff08;padding:13px 5px;border-radius:10px}
+.stat b{display:block;color:var(--green);font-size:18px}
+.stat small{color:var(--muted)}
+section{padding:65px 0}
+.section-title{text-align:center;margin-bottom:30px}
+.section-title h2{font-size:clamp(28px,4vw,40px);margin:8px 0}
+.section-title p{margin:auto;max-width:600px}
+.toolbar{display:flex;gap:10px;margin-bottom:24px}
+input,select{
+  min-width:0;padding:13px;border-radius:10px;
+  background:#111a22;border:1px solid var(--border);
+  color:white;outline:none
+}
+input{flex:1;width:100%}
+select{max-width:180px}
+input:focus,select:focus{border-color:var(--green)}
+.catalog{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.product{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:17px;overflow:hidden;transition:.2s
+}
+.product:hover{transform:translateY(-5px);border-color:#7bbd4b}
+.product-art{
+  height:165px;display:grid;place-items:center;
+  background:radial-gradient(circle at center,#35552e,#17241d 55%,#10161b);
+  position:relative
+}
+.product-art .emoji{font-size:65px}
+.badge{
+  position:absolute;top:12px;left:12px;padding:6px 9px;
+  background:#0b120ddd;border:1px solid #ffffff20;
+  border-radius:7px;font-size:10px;font-weight:bold
+}
+.product-body{padding:17px}
+.product h3{margin:0 0 5px;font-size:19px}
+.code{font-size:12px;color:var(--muted)}
+.specs{display:flex;flex-wrap:wrap;gap:7px;margin:17px 0}
+.spec{padding:6px 8px;background:#1b2831;border-radius:7px;
+  font-size:11px;color:#dce4e8}
+.product-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;border-top:1px solid var(--border);padding-top:15px
+}
+.price small{display:block;color:var(--muted);font-size:11px}
+.price b{color:var(--green);font-size:20px}
+.buy{padding:10px 12px;font-size:12px;white-space:nowrap}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.step{padding:23px;border:1px solid var(--border);
+  border-radius:15px;background:var(--card)}
+.step-number{color:var(--green);font-size:25px;font-weight:bold}
+.step h3{margin-bottom:8px}
+.step p{font-size:14px;margin-bottom:0}
+.notice{
+  padding:25px;border:1px solid #344b32;border-radius:16px;
+  background:#122017;margin-top:25px
+}
+.notice h3{color:var(--green);margin-top:0}
+.faq{max-width:780px;margin:auto}
+details{border-bottom:1px solid var(--border);padding:18px 0}
+summary{cursor:pointer;font-weight:bold}
+details p{font-size:14px}
+.cta{
+  padding:35px;border-radius:20px;background:var(--green);
+  color:#10160b;display:flex;align-items:center;
+  justify-content:space-between;gap:20px
+}
+.cta h2{font-size:clamp(25px,4vw,36px);margin:0}
+.cta p{color:#283a20;margin:8px 0}
+.cta .btn{background:#10160b;color:white;white-space:nowrap}
+footer{border-top:1px solid var(--border);padding:30px 0 85px}
+footer p{font-size:12px}
+.wa-float{
+  position:fixed;right:18px;bottom:18px;z-index:20;
+  border-radius:50px;padding:14px 18px;
+  background:var(--green);color:#10160b;font-weight:bold;
+  box-shadow:0 5px 25px #0008
+}
+.empty{grid-column:1/-1;text-align:center;padding:30px;color:var(--muted)}
+@media(max-width:800px){
+  .hero-grid{grid-template-columns:1fr}
+  .catalog{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .navlinks{gap:12px;font-size:12px}
+}
+@media(max-width:560px){
+  nav{height:auto;min-height:65px;flex-wrap:wrap;padding:12px 0}
+  .navlinks{width:100%;justify-content:space-between;order:3}
+  .navlinks a{font-size:11px}
+  .nav .btn{font-size:12px;padding:10px}
+  .hero{padding:50px 0}
+  .hero-grid{gap:25px}
+  h1{font-size:43px}
+  section{padding:48px 0}
+  .catalog{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .toolbar{flex-wrap:wrap}
+  .toolbar input{flex-basis:100%}
+  .toolbar select{flex:1;max-width:none}
+  .cta{align-items:flex-start;flex-direction:column;padding:25px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="container">
+    <a class="logo" href="#home">Kenzly<span>Store.</span></a>
+    <div class="navlinks">
+      <a href="#home">Beranda</a>
+      <a href="#katalog">Katalog</a>
+      <a href="#cara-beli">Cara Beli</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn" href="#katalog">Lihat Akun ↗</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="tag">● MARKETPLACE AKUN MLBB</div>
+      <h1>Akun impianmu.<br><span>Harga pilihan.</span></h1>
+      <p>
+        Selamat datang di KenzlyStore, tempat menjelajahi katalog akun
+        Mobile Legends. Bandingkan rank, koleksi skin, dan harga,
+        lalu tanyakan detail akun langsung kepada admin.
+      </p>
+      <div class="actions">
+        <a class="btn" href="#katalog">Jelajahi Katalog ↗</a>
+        <a class="btn btn-outline" href="#cara-beli">Cara Membeli</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>MLBB</b><small>Game pilihan</small></div>
+        <div class="stat"><b>24/7*</b><small>Pesan admin</small></div>
+        <div class="stat"><b>Jelas</b><small>Detail produk</small></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div>
+        <div class="hero-icon">🎮</div>
+        <div class="tag">WELCOME TO KENZLYSTORE</div>
+        <h2>Level Up Your Game</h2>
+        <p>Pilih koleksi yang sesuai gaya bermainmu.</p>
+        <div class="green">RANK • SKIN • HERO</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="katalog">
+  <div class="container">
+    <div class="section-title">
+      <div class="tag">KOLEKSI KENZLYSTORE</div>
+      <h2>Temukan akun favoritmu</h2>
+      <p>Cari akun berdasarkan nama atau filter rank untuk menemukan pilihan yang sesuai.</p>
+    </div>
+
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Cari akun atau rank...">
+      <select id="rank">
+        <option value="">Semua Rank</option>
+        <option>Mythic</option>
+        <option>Mythical Honor</option>
+        <option>Mythical Glory</option>
+        <option>Legend</option>
+        <option>Epic</option>
+      </select>
+      <select id="sort">
+        <option value="default">Pilihan</option>
+        <option value="low">Harga terendah</option>
+        <option value="high">Harga tertinggi</option>
+      </select>
+    </div>
+
+    <div class="catalog" id="products">
+
+      <article class="product" data-name="mythic starter" data-rank="Mythic" data-price="150000">
+        <div class="product-art"><span class="badge">PILIHAN</span><span class="emoji">⚔️</span></div>
+        <div class="product-body">
+          <h3>Mythic Starter</h3><div class="code">Kode: KZ-001</div>
+          <div class="specs"><span class="spec">Rank Mythic*</span><span class="spec">70+ Hero*</span><span class="spec">35+ Skin*</span></div>
+          <div class="product-bottom"><div class="price"><small>Harga contoh</small><b>Rp150.000</b></div><button class="btn buy" data-name="Mythic Starter KZ-001">Tanya Admin</button></div>
+        </div>
+      </article>
+
+      <article class="product" data-name="honor collector" data-rank="Mythical Honor" data-price="350000">
+        <div class="product-art" style="background:radial-gradient(circle,#72552b,#252016 65%,#10161b)"><span class="badge">COLLECTOR</span><span class="emoji">👑</span></div>
+        <div class="product-body">
+          <h3>Honor Collector</h3><div class="code">Kode: KZ-002</div>
+          <div class="specs"><span class="spec">Honor*</span><span class="spec">90+ Hero*</span><span class="spec">80+ Skin*</span></div>
+          <div class="product-bottom"><div class="price"><small>Harga contoh</small><b>Rp350.000</b></div><button class="btn buy" data-name="Honor Collector KZ-002">Tanya Admin</button></div>
+        </div>
+      </article>
+
+      <article class="product" data-name="glory premium" data-rank="Mythical Glory" data-price="650000">
+        <div class="product-art" style="background:radial-gradient(circle,#384d82,#1b2038 65%,#10161b)"><span class="badge">PREMIUM</span><span class="emoji">💎</span></div>
+        <div class="product-body">
+          <h3>Glory Premium</h3><div class="code">Kode: KZ-003</div>
+          <div class="specs"><span class="spec">Glory*</span><span class="spec">100+ Hero*</span><span class="spec">120+ Skin*</span></div>
+          <div class="product-bottom"><div class="price"><small>Harga contoh</small><b>Rp650.000</b></div><button class="btn buy" data-name="Glory Premium KZ-003">Tanya Admin</button></div>
+        </div>
+      </article>
+
+      <article class="product" data-name="legend budget" data-rank="Legend" data-price="90000">
+        <div class="product-art" style="background:radial-gradient(circle,#32656a,#172a2e 65%,#10161b)"><span class="badge">HEMAT</span><span class="emoji">🛡️</span></div>
+        <div class="product-body">
+          <h3>Legend Budget</h3><div class="code">Kode: KZ-004</div>
+          <div class="specs"><span class="spec">Legend*</span><span class="spec">55+ Hero*</span><span class="spec">20+ Skin*</span></div>
+          <div class="product-bottom"><div class="price"><small>Harga contoh</small><b>Rp90.000</b></div><button class="btn buy" data-name="Legend Budget KZ-004">Tanya Admin</button></div>
+        </div>
+      </article>
+
+      <article class="product" data-name="epic beginner" data-rank="Epic" data-price="50000">
+        <div class="product-art" style="background:radial-gradient(circle,#744b36,#2c201c 65%,#10161b)"><span class="badge">PEMULA</span><span class="emoji">🔥</span></div>
+        <div class="product-body">
+          <h3>Epic Beginner</h3><div class="code">Kode: KZ-005</div>
+          <div class="specs"><span class="spec">Epic*</span><span class="spec">40+ Hero*</span><span class="spec">10+ Skin*</span></div>
+          <div class="product-bottom"><div class="price"><small>Harga contoh</small><b>Rp50.000</b></div><button class="btn buy" data-name="Epic Beginner KZ-005">Tanya Admin</button></div>
+        </div>
+      </article>
+
+      <article class="product" data-name="mythic collector" data-rank="Mythic" data-price="275000">
+        <div class="product-art" style="background:radial-gradient(circle,#673c78,#291b37 65%,#10161b)"><span class="badge">KOLEKSI</span><span class="emoji">🌌</span></div>
+        <div class="product-body">
+          <h3>Mythic Collector</h3><div class="code">Kode: KZ-006</div>
+          <div class="specs"><span class="spec">Mythic*</span><span class="spec">85+ Hero*</span><span class="spec">60+ Skin*</span></div>
+          <div class="product-bottom"><div class="price"><small>Harga contoh</small><b>Rp275.000</b></div><button class="btn buy" data-name="Mythic Collector KZ-006">Tanya Admin</button></div>
+        </div>
+      </article>
+
+    </div>
+    <p style="font-size:11px">*Nama akun, harga, rank, jumlah hero, dan skin di atas merupakan data contoh. Ganti sesuai informasi akun yang benar-benar tersedia.</p>
+  </div>
+</section>
+
+<section id="cara-beli">
+  <div class="container">
+    <div class="section-title"><div class="tag">LANGKAH MUDAH</div><h2>Cara membeli akun</h2><p>Periksa informasi dan kesepakatan terlebih dahulu sebelum melakukan pembayaran.</p></div>
+    <div class="steps">
+      <div class="step"><div class="step-number">01</div><h3>Pilih akun</h3><p>Temukan akun yang cocok berdasarkan rank, koleksi, dan budget.</p></div>
+      <div class="step"><div class="step-number">02</div><h3>Hubungi admin</h3><p>Tanyakan detail, ketersediaan, kepemilikan, dan syarat transaksi.</p></div>
+      <div class="step"><div class="step-number">03</div><h3>Konfirmasi transaksi</h3><p>Pahami proses serah terima dan simpan bukti kesepakatan.</p></div>
+    </div>
+    <div class="notice">
+      <h3>🛡️ Tips keamanan</h3>
+      <p>Jangan bagikan OTP, kata sandi pribadi, atau data sensitif. Verifikasi informasi dan pihak yang bertransaksi. Jual beli akun bisa memiliki risiko dan mungkin dibatasi oleh ketentuan resmi game.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-title"><div class="tag">FAQ</div><h2>Pertanyaan umum</h2></div>
+    <div class="faq">
+      <details><summary>Apakah harga di website sudah pasti?</summary><p>Belum. Harga pada katalog ini adalah contoh desain. Konfirmasi harga dan ketersediaan kepada admin.</p></details>
+      <details><summary>Bagaimana cara menghubungi admin?</summary><p>Klik tombol “Tanya Admin” pada produk atau tombol WhatsApp di bagian bawah website.</p></details>
+      <details><summary>Apakah data akun sudah asli?</summary><p>Data katalog merupakan contoh dan harus diganti dengan informasi yang akurat sebelum website dipublikasikan.</p></details>
+      <details><summary>Apakah transaksi akun selalu aman?</summary><p>Tidak ada jaminan bebas risiko. Pahami ketentuan resmi Mobile Legends dan verifikasi seluruh detail sebelum bertransaksi.</p></details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta">
+      <div><h2>Sudah menemukan incaranmu?</h2><p>Tanyakan detail akun kepada admin KenzlyStore.</p></div>
+      <a class="btn" id="contact" href="#">Chat WhatsApp ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <a class="logo" href="#home">Kenzly<span>Store.</span></a>
+    <p>© <span id="year"></span> KenzlyStore. All rights reserved.</p>
+    <p>KenzlyStore merupakan toko independen dan tidak berafiliasi dengan Moonton. Mobile Legends: Bang Bang dan merek terkait adalah milik pemegang hak masing-masing.</p>
+  </div>
+</footer>
+
+<a class="wa-float" id="floating" href="#">☏ Chat Admin</a>
+
+<script>
+// GANTI dengan nomor WhatsApp admin: kode negara + nomor, tanpa tanda + atau spasi.
+const NOMOR_WA = "6285721320799";
+
+function linkWA(pesan){
+  return "https://wa.me/" + NOMOR_WA + "?text=" + encodeURIComponent(pesan);
+}
+const pesanDefault = "Halo KenzlyStore, saya ingin bertanya tentang akun Mobile Legends.";
+document.getElementById("contact").href = linkWA(pesanDefault);
+document.getElementById("floating").href = linkWA(pesanDefault);
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.querySelectorAll(".buy").forEach(tombol=>{
+  tombol.addEventListener("click",()=>{
+    const pesan = "Halo KenzlyStore, saya ingin menanyakan akun " +
+      tombol.dataset.name + ". Apakah masih tersedia? Mohon info detailnya.";
+    window.open(linkWA(pesan),"_blank","noopener,noreferrer");
+  });
+});
+
+const search = document.getElementById("search");
+const rank = document.getElementById("rank");
+const sort = document.getElementById("sort");
+const products = document.getElementById("products");
+const cards = [...products.querySelectorAll(".product")];
+
+function filterProducts(){
+  const query = search.value.toLowerCase().trim();
+  let shown = 0;
+  cards.forEach(card=>{
+    const cocokNama = (card.dataset.name + " " + card.innerText)
+      .toLowerCase().includes(query);
+    const cocokRank = !rank.value || card.dataset.rank === rank.value;
+    card.hidden = !(cocokNama && cocokRank);
+    if(!card.hidden) shown++;
+  });
+  const sorted = [...cards];
+  if(sort.value === "low") sorted.sort((a,b)=>+a.dataset.price - +b.dataset.price);
+  if(sort.value === "high") sorted.sort((a,b)=>+b.dataset.price - +a.dataset.price);
+  sorted.forEach(card=>products.appendChild(card));
+  let empty = products.querySelector(".empty");
+  if(!shown){
+    if(!empty){
+      empty = document.createElement("div");
+      empty.className = "empty";
+      empty.textContent = "Akun tidak ditemukan. Coba kata kunci lain.";
+      products.appendChild(empty);
+    }
+  }else if(empty) empty.remove();
+}
+search.addEventListener("input",filterProducts);
+rank.addEventListener("change",filterProducts);
+sort.addEventListener("change",filterProducts);
+</script>
+</body>
+</html>
